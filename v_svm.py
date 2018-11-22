@@ -166,14 +166,16 @@ class SVM():
             paras.append(para)
             for j in range(len(label)):
                 date = label.index[j]
+                days = len(data.loc[:date, 'close']) + 1
+                date_ = data.index[days]
                 if label.loc[date, 'label'] == label.loc[date, 'predict']:
                     #预测正确，则获取多空收益
-                    retn_i = abs(data.loc[date, 'close'] / data.loc[date, 'open'] - 1)
-                    retns[date] = retn_i - self.slippage
+                    retn_i = abs(data.loc[date_, 'close'] / data.loc[date_, 'open'] - 1)
+                    retns[date_] = retn_i - self.slippage
                 else:
                     #预测失误，产生损失
-                    retn_i = -abs(data.loc[date, 'close'] / data.loc[date, 'open'] - 1)
-                    retns[date] = retn_i - self.slippage
+                    retn_i = -abs(data.loc[date_, 'close'] / data.loc[date_, 'open'] - 1)
+                    retns[date_] = retn_i - self.slippage
         return paras, 1 + pd.Series(retns).sort_index().cumsum()
         
 if __name__ == '__main__':   
