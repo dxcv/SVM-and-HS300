@@ -71,7 +71,7 @@
 
    $high\_v = \frac {high_i} {max{\{high_t,  t=i, i-1, ... , i-v}\}} -1, v=20$
 
-   $low\_v = \frac {low_i} {max{\{low_t,  t=i, i-1, ... , i-v}\}} -1, v=20$
+   $low\_v = \frac {low_i} {min{\{low_t,  t=i, i-1, ... , i-v}\}} -1, v=20$
 
    $sigma =\sqrt{\sum _{i=1}^{21}\frac{(r_i - \bar r)^2}{20}} \times \frac{240}{20}$
 
